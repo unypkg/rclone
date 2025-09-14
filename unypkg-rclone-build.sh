@@ -51,9 +51,12 @@ echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
 
-#cd "$pkg_git_repo_dir" || exit
-#./autogen.sh
-#cd /uny/sources || exit
+uny_go_path=/uny/uny/root/go
+uny_go_bin=(/uny/pkg/go/*/bin/go)
+
+cd "$pkg_git_repo_dir" || exit
+GOPATH="$uny_go_path" "${uny_go_bin[0]}" mod vendor
+cd /uny/sources || exit
 
 archiving_source
 
