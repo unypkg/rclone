@@ -75,14 +75,12 @@ get_include_paths
 ####################################################
 ### Start of individual build script
 
-unset LD_RUN_PATH
+#unset LD_RUN_PATH
+export CGO_ENABLED=0
 
-./configure \
-    --prefix=/uny/pkg/"$pkgname"/"$pkgver"
+go build
 
-make -j"$(nproc)"
-make -j"$(nproc)" check 
-make -j"$(nproc)" install
+GOBIN=/uny/pkg/"$pkgname"/"$pkgver"/bin go install
 
 ####################################################
 ### End of individual build script
